@@ -20,11 +20,13 @@ def recursiveCircles(center, length, ax, col = 'c'):
     recursiveCircles(center+[xy, xy], length/1.5, ax, col=col)
     recursiveCircles(center-[xy, xy], length/1.5, ax, col=col)
 
-    
+
 def toxy(length):
     return length*np.sin(45)
 
 if(__name__=="__main__"):
+    SAVE_DIR = None
+
     #set up axis and variables
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -35,6 +37,7 @@ if(__name__=="__main__"):
     ax.set_aspect('equal')
     center = np.array([0,0])
     length=10
+
     #make circles
     recursiveCircles(center-1, length, ax, col='r')
     recursiveCircles(center, length, ax)
@@ -42,7 +45,8 @@ if(__name__=="__main__"):
     #save figure
     ax.axis('off')
     ax.set_facecolor('k')
-    plt.savefig("fractal7.jpg", format="jpg", dpi=1000, facecolor='k')
 
-    #plt.show()
-    
+    if not SAVE_DIR is None:
+        plt.savefig(SAVE_DIR, format="jpg", dpi=1000, facecolor='k')
+
+    plt.show()
